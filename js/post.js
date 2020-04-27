@@ -14,7 +14,7 @@ var APP = {
         xmlhttp.onreadystatechange = function () {
 
             if (this.readyState === 4 && this.status === 200) {
-                APP.visualJson(this.responseText);
+                APP.visualJsonPosts(this.responseText);
 
             }
             else
@@ -25,7 +25,7 @@ var APP = {
         xmlhttp.send();
     },
 
-    visualJson: function (risposta){
+    visualJsonPosts: function (risposta) {
 
         var postList = JSON.parse(risposta);
 
@@ -43,11 +43,64 @@ var APP = {
                     "<div class='card mb-4 box-shadow rounded-0'>" +
                         "<div class='card-body'>" +
                             "<h4 class='text-center card-title'>" + post.titolo + "</h4>" +
+                            "<h6 class='text-center text-black-50 card-subtitle'> Scritto da " + post.utente.username + "</h6>" +
                             "<p class='text-center card-text'>" + post.contenuto + "</p>" +
+                            "<div class='card'>" +
+                                "<div class='card-body'> <h5 class='text-center card-title'>Commenti</h5> <div id='commentiContainer" + post.id + "'> </div> </div>" + 
+                            "</div>" +
+                            "<br>"+
+                            "<button class='btn btn-primary' id='buttonComment" +  post.id + "' type='submit' style='filter: contrast(114%) hue-rotate(280deg) invert(16%) saturate(180%) sepia(15%);'>Commenta</button>"
                         "</div>" +
                     "</div>" +
                 "</div>";
+            
+                APP.showComments(post.id);
         }
+
+        
+        /**for (var i = 0; i < postList.length; i++) {
+            $("#buttonComment" + postList[i].id).on("click", APP.addComment);
+        }**/
+    },
+
+    showComments : function(postId) {
+
+        var address = "http://localhost:8080/Microblog/rest/comments/post/" + postId;
+
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {  // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange = function () {
+
+            if (this.readyState === 4 && this.status === 200) {
+                APP.visualJsonComments(this.responseText);
+
+            }
+
+        }
+        xmlhttp.open("GET", address, true);
+        xmlhttp.send();
+    },
+
+    visualJsonComments : function(data) {
+
+        var comments = JSON.parse(data);
+        
+        for (var i = 0; i < comments.length; i++) {
+
+            var container = document.getElementById("commentiContainer" + comments[i].post.id);
+            var commento = comments[i];
+            var text = container.innerHTML;
+
+            container.innerHTML = text + "<h6 class='text-muted card-subtitle mb-2'> Scritto da " + commento.utente.username + "</h6>" +
+            "<p class='card-text'>" + commento.contenuto + "</p>";
+
+        }
+
     }
 
 }
