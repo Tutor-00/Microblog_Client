@@ -35,12 +35,12 @@
         <div class="clearfix"></div>
     </div>
     <div class="contact-clean">
-        <form method="post">
+        <div class="container">
             <h2 class="text-center">Aggiungi un post</h2>
-            <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Titolo..."></div>
-            <div class="form-group"><textarea class="form-control" rows="14" name="message" placeholder="Inserisci il testo..."></textarea></div>
-            <div class="form-group"><button class="btn btn-primary" type="submit">invia</button></div>
-        </form>
+            <div class="form-group"><input class="form-control" type="text" name="title" id="title" placeholder="Titolo..."></div>
+            <div class="form-group"><textarea class="form-control" rows="14" name="message" id="body" placeholder="Inserisci il testo..."></textarea></div>
+            <div class="form-group"><button class="btn btn-primary" id="addPost" type="submit" style="filter: contrast(114%) hue-rotate(280deg) invert(16%) saturate(180%) sepia(15%);">invia</button></div>
+        </div>
     </div>
     <div class="footer-basic">
         <footer>
@@ -50,6 +50,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="js/post.js"></script>
 </body>
 
 </html>

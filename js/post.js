@@ -46,7 +46,7 @@ var APP = {
                             "<h6 class='text-center text-black-50 card-subtitle'> Scritto da " + post.utente.username + "</h6>" +
                             "<p class='text-center card-text'>" + post.contenuto + "</p>" +
                             "<div class='card'>" +
-                                "<div class='card-body'> <h5 class='text-center card-title'>Commenti</h5> <div id='commentiContainer" + post.id + "'> </div> </div>" + 
+                                "<div class='card-body'> <h5 class='text-center card-title'>Commenti</h5> <br> <div id='commentiContainer" + post.id + "'> </div> </div>" + 
                             "</div>" +
                             "<br>"+
                             "<button class='btn btn-primary' id='buttonComment" +  post.id + "' type='submit' style='filter: contrast(114%) hue-rotate(280deg) invert(16%) saturate(180%) sepia(15%);'>Commenta</button>"
@@ -58,9 +58,9 @@ var APP = {
         }
 
         
-        /**for (var i = 0; i < postList.length; i++) {
+        for (var i = 0; i < postList.length; i++) {
             $("#buttonComment" + postList[i].id).on("click", APP.addComment);
-        }**/
+        }
     },
 
     showComments : function(postId) {
@@ -101,10 +101,55 @@ var APP = {
 
         }
 
+    },
+
+    addPost : function() {
+
+        var title = document.getElementById("title").value;
+        var body = document.getElementById("body").value;
+
+        var address = "http://localhost:8080/Microblog/rest/posts";
+
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {  // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange = function () {
+
+            if (this.readyState === 4 && this.status === 201) {
+                
+                window.location.replace("visualizza.html");
+
+            }
+
+        }
+
+        var post = JSON.stringify({
+            "titolo": title,
+            "contenuto": body,
+            "utente": {
+                "username":"Tutor",
+                "email":"sahaspool@gmail.com",
+                "password":"8fd62a9b391288c66173dabef4925fccf57382946e2ed8ede64e1be0de4ad900",
+                "salt":"z9pZ4WGy6KJmXqaHFvbomg==",
+                "ruolo":"ADMIN"
+            }
+        })
+        xmlhttp.open("POST", address, true);
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+        xmlhttp.send(post);
+    },
+
+    init_addPost: function() {
+        $("#addPost").on("click", APP.addPost);
     }
 
 }
 
 $(document).ready(function () {
-    APP.showPosts("http://localhost:8080/Microblog/rest/posts");
+    APP.init_addPost();
+    APP.showPosts("http://localhost:8080/Microblog/rest/posts")
 });
