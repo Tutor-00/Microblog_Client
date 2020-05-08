@@ -1,4 +1,4 @@
-# Microblog Client
+# MicroClient
 ![](https://img.shields.io/badge/PROGETTO-SCOLASTICO-green?style=for-the-badge&logo=google-scholar&logoColor=green)
 
 
