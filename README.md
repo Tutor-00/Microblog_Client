@@ -1,3 +1,5 @@
 # Microblog_Client
+![](https://img.shields.io/badge/PROGETTO-SCOLASTICO-green?style=for-the-badge&logo=google-scholar&logoColor=green)
 
-Client per utilizzare i servizi del server Microblog_Restful
+
+Client che utilizza i servizi del server [MicroBlog_Restful](https://github.com/Tutor-00/Microblog_Restful).
