@@ -43,8 +43,8 @@ var APP = {
                     "<div class='card mb-4 box-shadow rounded-0'>" +
                         "<div class='card-body'>" +
                             "<h4 class='text-center card-title'>" + post.titolo + "</h4>" +
-                            "<h6 class='text-center text-black-50 card-subtitle'> Scritto da " + post.utente.username + "</h6>" +
                             "<p class='text-center card-text'>" + post.contenuto + "</p>" +
+							"<h6 class='text-right text-muted card-subtitle mb-2'> Scritto da " + post.utente.username + "</h6>" +
                             "<div class='card'>" +
                                 "<div class='card-body'> <h5 class='text-center card-title'>Commenti</h5> <br> <div id='commentiContainer" + post.id + "'> </div> </div>" + 
                             "</div>" +
