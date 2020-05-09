@@ -97,7 +97,7 @@ var APP = {
             var commento = comments[i];
             var text = container.innerHTML;
 
-            container.innerHTML = text + "<h6 class='text-muted card-subtitle mb-2'> Scritto da " + commento.utente.username + "</h6>" +
+            container.innerHTML = text + "<h6 class='text-muted card-subtitle mb-2'> Utente: " + commento.utente.username + "</h6>" +
             "<p class='card-text'>" + commento.contenuto + "</p>";
 
         }
